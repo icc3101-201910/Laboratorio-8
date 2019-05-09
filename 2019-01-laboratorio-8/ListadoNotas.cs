@@ -23,16 +23,24 @@ namespace _2019_01_laboratorio_8
         {
             if (nota >= 1 && nota <= 7)
             {
-                double promedioAntiguo = notas.Average();
-                notas.Add(nota);
-                double promedioNuevo = notas.Average();
-                if (promedioNuevo > promedioAntiguo)
+                // Esto evita un error... Average sobre una lista vacía no funciona :)
+                if (notas.Any())
                 {
-                    onAumento(promedioAntiguo, promedioNuevo);
+                    double promedioAntiguo = Promedio();
+                    notas.Add(nota);
+                    double promedioNuevo = Promedio();
+                    if (promedioNuevo > promedioAntiguo)
+                    {
+                        onAumento(promedioAntiguo, promedioNuevo);
+                    }
+                    else if (promedioNuevo < promedioAntiguo)
+                    {
+                        onDisminucion(promedioAntiguo, promedioNuevo);
+                    }
                 }
-                else if(promedioNuevo < promedioAntiguo)
+                else
                 {
-                    onDisminucion(promedioAntiguo, promedioNuevo);
+                    notas.Add(nota);
                 }
             }
         }
