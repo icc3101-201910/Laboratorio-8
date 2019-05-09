@@ -9,10 +9,14 @@ namespace _2019_01_laboratorio_8
     class ListadoNotas
     {
         private List<double> notas;
+        public VariacionPromedio onAumento;
+        public VariacionPromedio onDisminucion;
 
         public ListadoNotas()
         {
             notas = new List<double>();
+            onAumento = null;
+            onDisminucion = null;
         }
 
         public void AgregarNota(double nota)
